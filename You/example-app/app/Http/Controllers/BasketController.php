@@ -12,20 +12,15 @@ class BasketController extends Controller {
     private $basket;
 
     public function __construct() {
-        $this->getBasket();
+        $this->basket = Basket::getBasket();
     }
 
     /**
      * Показывает корзину покупателя
      */
-    public function index(Request $request) {
-        $basket_id = $request->cookie('basket_id');
-        if (!empty($basket_id)) {
-            $products = Basket::findOrFail($basket_id)->products;
-            return view('basket.index', compact('products'));
-        } else {
-            abort(404);
-        }
+    public function index() {
+        $products = $this->basket->products;
+        return view('basket.index', compact('products'));
     }
 
     /**
@@ -67,17 +62,18 @@ class BasketController extends Controller {
     /**
      * Возвращает объект корзины; если не найден — создает новый
      */
-    private function getBasket() {
-        $basket_id = request()->cookie('basket_id');
-        if (!empty($basket_id)) {
-            try {
-                $this->basket = Basket::findOrFail($basket_id);
-            } catch (ModelNotFoundException $e) {
-                $this->basket = Basket::create();
-            }
-        } else {
-            $this->basket = Basket::create();
-        }
-        Cookie::queue('basket_id', $this->basket->id, 525600);
+    
+
+    public function remove($id) {
+        $this->basket->remove($id);
+        // выполняем редирект обратно на страницу корзины
+        return redirect()->route('basket.index');
+    }
+
+
+    public function clear() {
+        $this->basket->delete();
+        // выполняем редирект обратно на страницу корзины
+        return redirect()->route('basket.index');
     }
 }

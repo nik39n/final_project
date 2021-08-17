@@ -4,7 +4,7 @@
             <h3>{{ $category->name }}</h3>
         </div>
         <div class="card-body p-0">
-            <img src="https://via.placeholder.com/400x120" alt="" class="img-fluid">
+            <img src="{{Storage::url($category->image)}}" alt="" class="img-fluid">
         </div>
         <div class="card-footer">
             <a href="{{ route('catalog.category', ['slug' => $category->slug]) }}"
@@ -12,3 +12,4 @@
         </div>
     </div>
 </div>
+

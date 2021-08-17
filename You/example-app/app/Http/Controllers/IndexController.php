@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class IndexController extends Controller
 {
@@ -13,6 +14,9 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request){
+            // $orderId = session('orderId');
+            // $order = Order::findOrFail($orderId);
+            // $countBasket = $order->products->count();
         return view('index');
     }
 }

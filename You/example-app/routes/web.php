@@ -1,21 +1,79 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\Admin;
+
+
 
 
 Route::get('/', 'App\Http\Controllers\IndexController')->name('index');
 
-Route::get('/catalog/index','App\Http\Controllers\CatalogController@index')->name('catalog.index');
+
+
+
+Route::group(['prefix' => 'basket'], function () {
+    Route::post('add/{id}', 'App\Http\Controllers\BasketvController@basketAdd')->name('basket-add');
+
+    Route::group(['middleware' => 'basket_not_empty'], function () {
+        Route::get('/', 'App\Http\Controllers\BasketvController@basket')->name('basket');
+        Route::get('place', 'App\Http\Controllers\BasketvController@basketPlace')->name('basket-place');
+        Route::post('remove/{id}', 'App\Http\Controllers\BasketvController@basketRemove')->name('basket-remove');
+        Route::post('clear/{id}', 'App\Http\Controllers\BasketvController@basketClear')->name('basket-clear');
+        Route::post('place', 'App\Http\Controllers\BasketvController@basketConfirm')->name('basket-confirm');
+    });
+});
+
+
+
+
+
+Route::get('/catalog/index', 'App\Http\Controllers\CatalogController@index')->name('catalog.index');
 Route::get('/catalog/category/{slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
 Route::get('/catalog/brand/{slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
 Route::get('/catalog/product/{slug}', 'App\Http\Controllers\CatalogController@product')->name('catalog.product');
-Route::get('/basket/index', 'App\Http\Controllers\BasketController@index')->name('basket.index');
-Route::get('/basket/checkout', 'App\Http\Controllers\BasketController@checkout')->name('basket.checkout');
-Route::post('/basket/add/{id}','App\Http\Controllers\BasketController@add')->where('id','[0-9]+')->name('basket.add');
-Route::post('/basket/plus/{id}','App\Http\Controllers\BasketController@plus')->where('id','[0-9]+')->name('basket.plus');
-Route::post('/basket/minus/{id}','App\Http\Controllers\BasketController@minus')->where('id','[0-9]+')->name('basket.minus');
+Route::get('/catalog/product', 'App\Http\Controllers\CatalogController@allprod')->name('catalog.allprod');
+Route::get('/catalog/brand', 'App\Http\Controllers\CatalogController@allbrand')->name('catalog.allbrand');
 
-Route::post('/basket/remove/{id}','App\Http\Controllers\BasketController@remove')->where('id','[0-9]+')->name('basket.remove');
 
-Route::post('/basket/clear', 'App\Http\Controllers\BasketController@clear')->name('basket.clear');
 
+
+
+
+
+
+Auth::routes([
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
+
+Route::middleware(['auth'])->group(function(){
+    Route::group([
+        'prefix' => 'person',
+        'as' => 'person.',
+    ], function(){
+            Route::get('/orders', [App\Http\Controllers\Person\OrderController::class, 'index'])->name('orders.index');
+            Route::get('/orders{order}', [App\Http\Controllers\Person\OrderController::class, 'show'])->name('orders.show');
+    });
+
+
+
+    Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+        Route::group(['middleware' => 'is_admin'], function () {
+            Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
+            Route::get('/orders{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+    
+        });
+    
+        Route::resource('categories', 'App\Http\Controllers\Admin\CategoryController');
+        Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
+    });
+});
+
+
+
+
+
+Route::get("/logout", 'App\Http\Controllers\Auth\LoginController@logout')->name('get-logout');

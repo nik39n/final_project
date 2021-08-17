@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -23,16 +25,20 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    protected function redirectTo()
+    {
+        if(Auth::user()->isAdmin()){
+            return route('home');
+
+        } else {
+            return route('person.orders.index');
+
+        }
+    }
+
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
+     * Create a new con troller instance.
      *
      * @return void
      */

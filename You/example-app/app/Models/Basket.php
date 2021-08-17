@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Cookie;
 
 class Basket extends Model {
     /**
@@ -34,10 +36,8 @@ class Basket extends Model {
      */
     private function change($id, $count = 0) {
         if ($count == 0) {
-
             return;
         }
-
         // если товар есть в корзине — изменяем кол-во
         if ($this->products->contains($id)) {
             // получаем объект строки таблицы `basket_product`
@@ -65,5 +65,26 @@ class Basket extends Model {
         $this->products()->detach($id);
         // обновляем поле `updated_at` таблицы `baskets`
         $this->touch();
+    }
+    public static function getBasket() {
+        $basket_id = request()->cookie('basket_id');
+        if (!empty($basket_id)) {
+            try {
+                $basket = Basket::findOrFail($basket_id);
+            } catch (ModelNotFoundException $e) {
+                $basket = Basket::create();
+            }
+        } else {
+            $basket = Basket::create();
+        }
+        Cookie::queue('basket_id', $basket->id, 525600);
+        return $basket;
+    }
+    public static function getCount() {
+        $basket_id = request()->cookie('basket_id');
+        if (empty($basket_id)) {
+            return 0;
+        }
+        return self::getBasket()->products->count();
     }
 }

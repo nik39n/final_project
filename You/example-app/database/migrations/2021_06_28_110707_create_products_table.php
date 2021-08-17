@@ -22,15 +22,15 @@ class CreateProductsTable extends Migration {
             $table->timestamps();
 
             // внешний ключ, ссылается на поле id таблицы categories
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->nullOnDelete();
-            // внешний ключ, ссылается на поле id таблицы brands
-            $table->foreign('brand_id')
-                ->references('id')
-                ->on('brands')
-                ->nullOnDelete();
+            // $table->foreign('category_id')
+            //     ->references('id')
+            //     ->on('categories')
+            //     ->nullOnDelete();
+            // // внешний ключ, ссылается на поле id таблицы brands
+            // $table->foreign('brand_id')
+            //     ->references('id')
+            //     ->on('brands')
+            //     ->nullOnDelete();
         });
     }
 

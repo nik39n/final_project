@@ -1,17 +1,49 @@
-<div class="col-md-6 mb-4">
-    <div class="card list-item">
-        <div class="card-header">
-            <h3 class="mb-0">{{$product->name}}</h3>
-        </div>
-        <div class="card-body p-0">
-            <img src="https://via.placeholder.com/400x120" alt="" class="img-fluid">
-        </div>
-        <div class="card-footer">
-            <form action="{{route('basket.add',['id'=>$product->id])}}" method="post" class="d-inline">
-                @csrf 
-                <button type="submit" class="btn btn-success">Добавить в корзину</button>
-            </form>
-            <a href="{{ route('catalog.product', ['slug' => $product->slug]) }}" class="btn btn-dark float-right">Перейти к товару</a>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="single-product-wrapper">
+            <!-- Product Image -->
+            <div class="product-img">
+                <img src="{{Storage::url($product->image)}}" alt="">
+                <!-- Hover Thumb -->
+                <img class="hover-img" src="{{asset('img/product-img/product-2.jpg')}}" alt="">
+
+                <!-- Product Badge -->
+                <div class="product-badge offer-badge">
+                    <span>-30%</span>
+                </div>
+                <!-- Favourite -->
+                <div class="product-favourite">
+                    <a href="#" class="favme fa fa-heart"></a>
+                </div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="hover-content">
+            <div class="add-to-cart-btn">
+                <form action="{{ route('basket-add', $product) }}" 
+                    method="post" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn essence-btn">Add to Cart</button>
+                </form>
+            </div>
+            </div>
+            <div class="product-description">
+                <span>{{ $product->getBrand()->name }}</span>
+                <a href="{{route('catalog.product', ['slug' => $product->slug])}}">
+                    <h6>{{ $product->name }}</h6>
+                </a>
+                <p class="product-price">${{ $product->price }}</p>
+
+                <!-- Hover Content -->
+                
+                    <!-- Add to Cart -->
+                    <div class="add-to-cart-btn">
+                        <form action="{{ route('basket-add', $product) }}" 
+                            method="post" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn essence-btn">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
