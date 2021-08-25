@@ -1,17 +1,12 @@
 @extends('layout.site')
 
 @section('content')
-    <div class="container">
-        <h1>Ваша корзина</h1>
+    <div class="container mb-5 pt-5">
+        <h1 class="mb-5">Ваша корзина</h1>
             @php
                 $basketCost = 0;
             @endphp
-            <form action="" method="post" class="text-right">
-                @csrf
-                <button type="submit" class="btn btn-outline-danger mb-4 mt-0">
-                    Очистить корзину
-                </button>
-            </form>
+            
             <table class="table table-bordered">
                 <tr>
                     <th>№</th>

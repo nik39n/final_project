@@ -881,9 +881,6 @@ img {
             padding: 0 10px;
             display: inline-block;
             line-height: 25px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
             z-index: 10;
             &.offer-badge {
                 background-color: $hover-color;
@@ -899,8 +896,6 @@ img {
                 width: 45px;
                 font-size: 14px;
                 color: #ccc;
-                top: 20px;
-                right: 20px;
                 z-index: 10;
                 line-height: 25px;
                 background-color: $white-color;

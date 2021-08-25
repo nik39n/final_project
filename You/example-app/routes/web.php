@@ -21,6 +21,7 @@ Route::group(['prefix' => 'basket'], function () {
         Route::get('place', 'App\Http\Controllers\BasketvController@basketPlace')->name('basket-place');
         Route::post('remove/{id}', 'App\Http\Controllers\BasketvController@basketRemove')->name('basket-remove');
         Route::post('clear/{id}', 'App\Http\Controllers\BasketvController@basketClear')->name('basket-clear');
+        // Route::post('clear', 'App\Http\Controllers\BasketvController@allbasketClear')->name('allbasketClear');
         Route::post('place', 'App\Http\Controllers\BasketvController@basketConfirm')->name('basket-confirm');
     });
 });
@@ -49,13 +50,13 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::group([
         'prefix' => 'person',
         'as' => 'person.',
-    ], function(){
-            Route::get('/orders', [App\Http\Controllers\Person\OrderController::class, 'index'])->name('orders.index');
-            Route::get('/orders{order}', [App\Http\Controllers\Person\OrderController::class, 'show'])->name('orders.show');
+    ], function () {
+        Route::get('/orders', [App\Http\Controllers\Person\OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders{order}', [App\Http\Controllers\Person\OrderController::class, 'show'])->name('orders.show');
     });
 
 
@@ -64,11 +65,12 @@ Route::middleware(['auth'])->group(function(){
         Route::group(['middleware' => 'is_admin'], function () {
             Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
             Route::get('/orders{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
-    
         });
-    
+
         Route::resource('categories', 'App\Http\Controllers\Admin\CategoryController');
         Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
+        Route::resource('brands', 'App\Http\Controllers\Admin\BrandController');
+        
     });
 });
 

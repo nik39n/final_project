@@ -9,6 +9,8 @@ class Brand extends Model {
     /**
      * Возвращает список товаров выбранного бренда
      */
+    protected $fillable = [ 'name' , 'content', 'slug', 'image', 'created_at', 'updated_at'];
+
     public function getProducts() {
         return Product::where('brand_id', $this->id)->get();
     }

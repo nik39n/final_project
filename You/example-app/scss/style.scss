@@ -878,11 +878,7 @@ img {
             font-weight: 700;
             font-size: 12px;
             padding: 0 10px;
-            display: inline-block;
             line-height: 25px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
             z-index: 10;
             &.offer-badge {
                 background-color: $hover-color;

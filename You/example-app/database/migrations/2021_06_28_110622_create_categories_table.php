@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration {
             $table->unsignedBigInteger('parent_id')->nullable(false)->default(0);
             $table->string('name', 100);
             $table->string('content', 200)->nullable();
-            $table->string('slug', 100)->unique();
+            $table->string('slug', 200)->unique();
             $table->string('image', 50)->nullable();
             $table->timestamps();
         });

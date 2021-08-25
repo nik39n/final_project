@@ -25,17 +25,12 @@
                     @method('PUT')
                 @endisset
                 @csrf
-                <div class="input-group row">
-                    <label for="code" class="col-sm-2 col-form-label">Код: </label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="code" id="code"
-                               value="@isset($product){{ $product->code }}@endisset">
-                    </div>
-                </div>
                 <br>
                 <div class="input-group row">
                     <label for="name" class="col-sm-2 col-form-label">Название: </label>
                     <div class="col-sm-6">
+                    @include('auth.layouts.error', ['fieldName' => 'name'])
+
                         <input type="text" class="form-control" name="name" id="name"
                                value="@isset($product){{ $product->name }}@endisset">
                     </div>
@@ -44,6 +39,9 @@
                 <div class="input-group row">
                     <label for="category_id" class="col-sm-2 col-form-label">Категория: </label>
                     <div class="col-sm-6">
+                        @include('auth.layouts.error', ['fieldName' => 'category_id'])
+
+
                         <select name="category_id" id="category_id" class="form-control">
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}"
@@ -59,18 +57,56 @@
                 </div>
                 <br>
                 <div class="input-group row">
-                    <label for="description" class="col-sm-2 col-form-label">Описание: </label>
+                    <label for="category_id" class="col-sm-2 col-form-label">Бренд: </label>
                     <div class="col-sm-6">
-								<textarea name="description" id="description" cols="72"
-                                          rows="7">@isset($product){{ $product->description }}@endisset</textarea>
+                    @include('auth.layouts.error', ['fieldName' => 'brand_id'])
+
+
+                        <select name="brand_id" id="brand_id" class="form-control">
+                            @foreach($brands as $brand)
+                                <option value="{{$brand->id}}"
+                                    @isset($product)
+                                        @if($product->brand_id == $brand->id)
+                                            selected
+                                        @endif
+                                    @endisset
+                                    >{{$brand->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
+                </div>
+                <br>
+                <div class="input-group row">
+                    <label for="content" class="col-sm-2 col-form-label">Описание: </label>
+                    <div class="col-sm-6">
+                        @include('auth.layouts.error', ['fieldName' => 'content'])
+
+
+								<textarea name="content" id="content" cols="72"
+                                          rows="7" value="@isset($product){{ $product->content }}@endisset">@isset($product){{ $product->content }}@endisset</textarea>
+                    </div>
+                </div>
+                <div class="input-group row">
+                                <label for="slug" class="col-sm-2 col-form-label">slug</label>
+                                <div class="col-sm-6">
+                                @include('auth.layouts.error', ['fieldName' => 'slug'])
+
+
+                                    <textarea name="slug" id="slug" cols="72"
+                                              rows="7">@isset($product){{ $product->slug }}@endisset</textarea>
+                                </div>
+                            </div>
+                            
                 </div>
                 <br>
                 <div class="input-group row">
                     <label for="image" class="col-sm-2 col-form-label">Картинка: </label>
                     <div class="col-sm-10">
+                        @include('auth.layouts.error', ['fieldName' => 'image'])
+
                         <label class="btn btn-default btn-file">
-                            Загрузить <input type="file" style="display: none;" name="image" id="image">
+                            Загрузить <input type="file" style="display: none;" name="image" id="image"
+                            value="@isset($product){{ $product->image }}@endisset">
                         </label>
                     </div>
                 </div>
@@ -78,10 +114,27 @@
                 <div class="input-group row">
                     <label for="price" class="col-sm-2 col-form-label">Цена: </label>
                     <div class="col-sm-2">
+                        @include('auth.layouts.error', ['fieldName' => 'price'])
                         <input type="text" class="form-control" name="price" id="price"
                                value="@isset($product){{ $product->price }}@endisset">
                     </div>
                 </div>
+                <br>
+                @foreach([
+                    'hit' => 'Хит',
+                    'new'=> 'Новинка',
+                    'recommend' => 'Рекомендуемые'] as $field => $title)
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">{{$title}}</label>
+                            <div class="col-sm-6">
+                                <input type="checkbox" class="form-control" name="{{$field}}" id="{{$field}}"
+                                   @if(isset($product) && $product->$field === 1)
+                                   checked="'checked"
+                                   @endif
+                                   >
+                        </div>
+                    </div>
+                @endforeach
                 <button class="btn btn-success">Сохранить</button>
             </div>
         </form>

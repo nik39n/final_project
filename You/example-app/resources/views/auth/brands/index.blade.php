@@ -2,7 +2,7 @@
 @section ('title' , 'Заказы')
 @section('content')
     <div class="col-md-12">
-        <h1>Категории</h1>
+        <h1>Бренды</h1>
         <table class="table">
             <tbody>
             <tr>
@@ -19,16 +19,16 @@
                     Действия
                 </th>
             </tr>
-            @foreach($categories as $category)
+            @foreach($brands as $brand)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->slug}}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $brand->id }}</td>
+                    <td>{{ $brand->slug}}</td>
+                    <td>{{ $brand->name }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                                <a class="btn btn-success" type="button" href="{{ route('categories.show', $category) }}">Открыть</a>
-                                <a class="btn btn-warning" type="button" href="{{ route('categories.edit', $category) }}">Редактировать</a>
+                            <form action="{{ route('brands.destroy', $brand) }}" method="POST">
+                                <a class="btn btn-success" type="button" href="{{ route('brands.show', $brand) }}">Открыть</a>
+                                <a class="btn btn-warning" type="button" href="{{ route('brands.edit', $brand) }}">Редактировать</a>
                                 @csrf
                                 @method('DELETE')
                                 <input class="btn btn-danger" type="submit" value="Удалить"></form>
@@ -38,8 +38,8 @@
             @endforeach
             </tbody>
         </table>
-        {{$categories->links("pagination::bootstrap-4")}}
+
         <a class="btn btn-success" type="button"
-           href="{{route('categories.create')}}">Добавить категорию</a>
+           href="{{route('brands.create')}}">Добавить категорию</a>
     </div>
 @endsection

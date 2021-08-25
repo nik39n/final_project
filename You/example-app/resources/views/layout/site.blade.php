@@ -39,6 +39,7 @@
 </head>
 
 <body>
+    
     <!-- ##### Header Area Start ##### -->
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
@@ -116,7 +117,12 @@
         @endif
     </header>
     <!-- ##### Header Area End ##### -->
+        <div id="preloader">
+                <img src="{{asset('img/core-img/loader.gif')}}" alt="preloader">
+        </div>
         @yield('content')
+        
+        
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix">
         <div class="container">
@@ -203,6 +209,12 @@
 
 
     <script src="{{ asset('js/site.js') }}"></script>
+    <script>window.onload = function() {
+            let preloader = document.getElementById('preloader');
+            preloader.classList.add('hide-preloader');
+            setInterval(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 990);}</script>
 
 </body>
 

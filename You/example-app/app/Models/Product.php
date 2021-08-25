@@ -16,7 +16,7 @@ class Product extends Model {
         return Category::find($this->category_id);
     }
 
-    protected $fillable = ['category_id', 'brand_id','name', 'content', 'slug', 'image', 'price'];
+    protected $fillable = ['id','category_id', 'brand_id','name', 'content', 'slug', 'image', 'price', 'hit', 'new', 'recommend','created_at','updated_at'];
     /**
      * Возвращает бренд выбранного товара
      */
@@ -37,5 +37,25 @@ class Product extends Model {
             return $this->pivot->count * $this->price;
         }
         return $this->price;
+    }
+    public function setNewAttribute($value){
+        $this->attributes['new'] = $value === 'on' ? 1:0;
+    }
+    public function setHitAttribute($value){
+        $this->attributes['hit'] = $value === 'on' ? 1:0;
+    }
+    public function setRecommendAttribute($value){
+        $this->attributes['recommend'] = $value === 'on' ? 1:0;
+    }
+    public function isHit(){
+        return $this->hit === 1;
+
+    }
+    public function isNew(){
+        return $this->new === 1;
+
+    }
+    public function isRecommend(){
+        return $this->recommend === 1;
     }
 }

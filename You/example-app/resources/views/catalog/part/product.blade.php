@@ -2,22 +2,27 @@
         <div class="single-product-wrapper">
             <!-- Product Image -->
             <div class="product-img">
+                <div class="labels">
+                    @if($product->isNew())
+                            <span class="badge badge-success">Новинка</span>
+                    @endif
+                    @if($product->isRecommend())
+                            <span class="badge badge-warning">Рекомендуемое</span>
+                    @endif
+                    @if($product->isHit())
+                            <span class="badge badge-danger">Хит</span>
+                    @endif
+                </div>
                 <img src="{{Storage::url($product->image)}}" alt="">
                 <!-- Hover Thumb -->
-                <img class="hover-img" src="{{asset('img/product-img/product-2.jpg')}}" alt="">
+                <img class="hover-img" src="{{asset('img/product-im g/product-2.jpg')}}" alt="">
 
                 <!-- Product Badge -->
-                <div class="product-badge offer-badge">
-                    <span>-30%</span>
-                </div>
-                <!-- Favourite -->
-                <div class="product-favourite">
-                    <a href="#" class="favme fa fa-heart"></a>
-                </div>
-            </div>
+                
 
+                
+            </div>
             <!-- Product Description -->
-            <div class="hover-content">
             <div class="add-to-cart-btn">
                 <form action="{{ route('basket-add', $product) }}" 
                     method="post" class="d-inline">
@@ -25,25 +30,13 @@
                     <button type="submit" class="btn essence-btn">Add to Cart</button>
                 </form>
             </div>
-            </div>
             <div class="product-description">
-                <span>{{ $product->getBrand()->name }}</span>
+                <span>@isset($product->brand->name){{ $product->brand->name }}@else @endisset</span>
                 <a href="{{route('catalog.product', ['slug' => $product->slug])}}">
                     <h6>{{ $product->name }}</h6>
                 </a>
                 <p class="product-price">${{ $product->price }}</p>
 
-                <!-- Hover Content -->
-                
-                    <!-- Add to Cart -->
-                    <div class="add-to-cart-btn">
-                        <form action="{{ route('basket-add', $product) }}" 
-                            method="post" class="d-inline">
-                            @csrf
-                            <button type="submit" class="btn essence-btn">Add to Cart</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -110,10 +110,47 @@ class BasketvController extends Controller
 
         $product = Product::find($productId);
         //dd($product);
-        $request->session()->flash('warning', 'Удален товар ' . $product->name);
+        $request->session()->flush('warning', 'Удален товар ' . $product->name);
 
         return redirect()->route('basket');
     }
+
+    public function basketClear($productId){
+        $orderId = session('orderId');
+        if (is_null($orderId)) {
+            return redirect()->route('basket');
+        }
+        $order = Order::find($orderId);
+        
+        
+        if ($order->products->contains($productId)) {
+           $order->products()->where('product_id', $productId)->first()->pivot;
+            $order->products()->detach($productId);
+        }
+
+        session()->flash('warning', 'Удален товар ');
+
+        return redirect()->route('basket');
+    }
+
+    // public function allbasketClear(){
+    //     $orderId = session('orderId');
+    //     if (is_null($orderId)) {
+    //         return redirect()->route('basket');
+    //     }
+    //     $order = Order::find($orderId);
+    //     $count=$order->products->count($orderId);
+    //     $order->products()->first()->pivot;
+    //     for ($i=0; $i <= $count; $i++) { 
+            
+    //         $order->products()->detach($orderId);
+    //         $order->products()->save($orderId);
+    //     }
+
+    //     session()->flash('warning', 'Удалены товары ');
+
+    //     return redirect()->route('basket');
+    // }
     
     
 }
