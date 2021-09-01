@@ -3,7 +3,7 @@
 @section('title', 'Авторизация')
 
 @section('content')
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-header">Авторизация</div>
 

@@ -57,8 +57,7 @@
                                 @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-							<textarea name="description" id="description" cols="72"
-                                      rows="7">@isset($category){{ $category->content }}@endisset</textarea>
+							<textarea name="description" id="description" >@isset($category){{ $category->content }}@endisset</textarea>
                             </div>
                         </div>
                         <br>
@@ -69,8 +68,7 @@
                                     @error('slug')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <textarea name="slug" id="slug" cols="72"
-                                              rows="7">@isset($category){{ $category->slug }}@endisset</textarea>
+                                    <textarea name="slug" id="slug">@isset($category){{ $category->slug }}@endisset</textarea>
                                 </div>
                             </div>
                             <br>

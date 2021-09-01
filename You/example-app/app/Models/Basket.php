@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
 
 class Basket extends Model {
     /**
@@ -27,6 +29,13 @@ class Basket extends Model {
      */
     public function decrease($id, $count = 1) {
         $this->change($id, -1 * $count);
+    }
+
+    public function saveOrder($name, $phone, $email)
+    {
+            
+        Mail::to($email)->send(new OrderCreated());
+        return $this->order->saveOrder($name, $phone);
     }
 
     /**

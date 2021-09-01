@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
@@ -41,7 +41,7 @@
 <body>
     
     <!-- ##### Header Area Start ##### -->
-    <header class="header_area">
+    <header class="header_area  ">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
@@ -72,9 +72,9 @@
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
-                <div class="search-area">
-                    <form action="#" method="post">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                <div class="search-area  ">
+                    <form action="{{route('search.index')}}" method="GET">
+                        <input type="search" name="search" id="headerSearch" placeholder="Поле поиска">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
@@ -87,25 +87,25 @@
                 @endguest
                 @auth 
                     @if(Auth::user()->isAdmin())
-                        <div class="user-login-info">
+                        <div class="user-login-info ">
                             <a href="{{route('home')}}"><img src="{{ asset('img/core-img/user.svg')}}" alt=""></a>
                         </div>
                     @else
-                    <div class="user-login-info">
+                    <div class="user-login-info ">
                             <a href="{{route('person.orders.index')}}"><img src="{{ asset('img/core-img/user.svg')}}" alt=""></a>
                         </div>
                     @endif
-                    <div class="user-login-info logout">
+                    <div class="user-login-info logout ">
                         <a href="{{route('get-logout')}}" class="logout" style="    display: flex;align-items: center; justify-content: center;" ><i class="fas fa-sign-out-alt" style="font-size:20px;"></i></a>
                     </div>
                 @endauth
                 <!-- Cart Area -->
-                <div class="cart-area">
+                <div class="cart-area" >
                     <a href="{{route('basket')}}" id="essenceCartBtn"><img src="{{ asset('img/core-img/bag.svg')}}" alt="">
-                    @isset($countBasket)
-                        <span>{{$countBasket}}</span>
+                    @isset($count)
+                        <span>{{$count}}</span>
                     @else
-                        <span>0</span>
+                        <span></span>
                     @endisset
                 </a>
                 </div>
@@ -120,11 +120,10 @@
         <div id="preloader">
                 <img src="{{asset('img/core-img/loader.gif')}}" alt="preloader">
         </div>
-        @yield('content')
-        
+         @yield('content')        
         
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer_area clearfix">
+    <footer class="footer_area clearfix col-sm-12 ">
         <div class="container">
             <div class="row">
                 <!-- Single Widget Area -->
@@ -138,8 +137,6 @@
                         <div class="footer_menu">
                             <ul>
                                 <li><a href="{{route('catalog.index')}}">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,12 +145,8 @@
                 <div class="col-12 col-md-6">
                     <div class="single_widget_area mb-30">
                         <ul class="footer_widget_menu">
-                            <li><a href="#">Order Status</a></li>
                             <li><a href="#">Payment Options</a></li>
                             <li><a href="#">Shipping and Delivery</a></li>
-                            <li><a href="#">Guides</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Use</a></li>
                         </ul>
                     </div>
                 </div>

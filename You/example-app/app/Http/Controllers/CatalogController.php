@@ -14,39 +14,45 @@ class CatalogController extends Controller {
 
     public function countB(){
         $orderId = session('orderId');
-        $order = Order::findOrFail($orderId);
-        $count = $order->products->count();
-        return $count;
+        $order = Order::find($orderId);
+        if($orderId==null){
+            $CountBasket = 0;
+        }
+        else{
+            $CountBasket = $order->products->count();
+        }
+        return  $CountBasket;
     }
 
     public function index() {
         $roots = Category::where('parent_id', 0)->get();
-
-        return view('catalog.allcategory', compact('roots'));
+        $count=$this->countB();
+        return view('catalog.allcategory', compact('roots','count'));
     }
     public function allbrand() {
         $brands = Brand::get();
-
-        return view('catalog.allbrands', compact('brands'));
+        $count=$this->countB();
+        return view('catalog.allbrands', compact('brands','count'));
     }
 
     public function category($slug) {
         $category = Category::where('slug', $slug)->firstOrFail();
-
-        return view('catalog.category', compact('category'));
+        $count=$this->countB();
+        return view('catalog.category', compact('category','count'));
     }
 
     public function brand($slug) {
         $brand = Brand::where('slug', $slug)->firstOrFail();
-
-        return view('catalog.brand', compact('brand'));
+        $count=$this->countB();
+        return view('catalog.brand', compact('brand','count'));
     }
 
     public function product($slug) {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::withTrashed()->where('slug', $slug)->firstOrFail();
         $brand_id = $product->brand_id;
         $brand = Brand::where('id', $brand_id)->firstOrFail();
-        return view('catalog.product', compact('product','brand'));
+        $count=$this->countB();
+        return view('catalog.product', compact('product','brand','count'));
     }
     public function allprod(CatalogFilterRequest $request){
         $selectedhit=null;
@@ -89,6 +95,11 @@ class CatalogController extends Controller {
         
 
         $allproduct = $productQuery->paginate(9)->withPath("?".$request->getQueryString());
-        return view ('catalog.index', compact('allproduct','countProd','selectedhit','selectednew','selectedbigsmall','selectedsmallbig'));
+        $count=$this->countB();
+
+        
+
+
+        return view ('catalog.index', compact('allproduct','countProd','selectedhit','selectednew','selectedbigsmall','selectedsmallbig','count'));
     }
 }

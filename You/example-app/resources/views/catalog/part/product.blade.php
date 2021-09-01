@@ -1,4 +1,4 @@
-    <div class="col-12 col-sm-6 col-lg-4">
+    <div class="col-12 col-sm-10 col-lg-4">
         <div class="single-product-wrapper">
             <!-- Product Image -->
             <div class="product-img">
@@ -14,8 +14,7 @@
                     @endif
                 </div>
                 <img src="{{Storage::url($product->image)}}" alt="">
-                <!-- Hover Thumb -->
-                <img class="hover-img" src="{{asset('img/product-im g/product-2.jpg')}}" alt="">
+                
 
                 <!-- Product Badge -->
                 
@@ -24,11 +23,15 @@
             </div>
             <!-- Product Description -->
             <div class="add-to-cart-btn">
-                <form action="{{ route('basket-add', $product) }}" 
-                    method="post" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn essence-btn">Add to Cart</button>
-                </form>
+                @if($product->isAvailable())
+                    <form action="{{ route('basket-add', $product) }}" 
+                        method="post" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn essence-btn">Add to Cart</button>
+                    </form>
+                @else 
+                  Нет в наличии
+                @endif
             </div>
             <div class="product-description">
                 <span>@isset($product->brand->name){{ $product->brand->name }}@else @endisset</span>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,17 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+    public function countB(){
+        $orderId = session('orderId');
+        $order = Order::find($orderId);
+        if($orderId==null){
+            $CountBasket = 0;
+        }
+        else{
+            $CountBasket = $order->products->count();
+        }
+        return  $CountBasket;
+    }
     /**
      * Show the application dashboard.
      *
@@ -23,6 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $count=$this->countB();
+        return view('home', compact('count'));
     }
 }

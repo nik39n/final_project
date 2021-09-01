@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <h1>{{ $product->name }}</h1>
@@ -20,7 +20,11 @@
                                 @csrf
                                 <label for="input-quantity">Количество</label>
                                 <input type="text" name="quantity" id="input-quantity" value="1" class="form-control mx-2 w-25">
-                                <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                                @if($product->isAvailable())
+                                    <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                                @else 
+                                    Не доступен
+                                @endif
                             </form>
                         </div>
                     </div>

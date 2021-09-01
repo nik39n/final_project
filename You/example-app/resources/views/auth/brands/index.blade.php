@@ -3,43 +3,44 @@
 @section('content')
     <div class="col-md-12">
         <h1>Бренды</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Slug
-                </th>
-                <th>
-                    Название
-                </th>
-                <th>
-                    Действия
-                </th>
-            </tr>
-            @foreach($brands as $brand)
+        <div class="table-responsive-sm">
+            <table class="table">
+                <tbody>
                 <tr>
-                    <td>{{ $brand->id }}</td>
-                    <td>{{ $brand->slug}}</td>
-                    <td>{{ $brand->name }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <form action="{{ route('brands.destroy', $brand) }}" method="POST">
-                                <a class="btn btn-success" type="button" href="{{ route('brands.show', $brand) }}">Открыть</a>
-                                <a class="btn btn-warning" type="button" href="{{ route('brands.edit', $brand) }}">Редактировать</a>
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Удалить"></form>
-                        </div>
-                    </td>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Slug
+                    </th>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Действия
+                    </th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
-
+                @foreach($brands as $brand)
+                    <tr>
+                        <td>{{ $brand->id }}</td>
+                        <td>{{ $brand->slug}}</td>
+                        <td>{{ $brand->name }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form action="{{ route('brands.destroy', $brand) }}" method="POST">
+                                    <a class="btn btn-success" type="button" href="{{ route('brands.show', $brand) }}">Открыть</a>
+                                    <a class="btn btn-warning" type="button" href="{{ route('brands.edit', $brand) }}">Редактировать</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger" type="submit" value="Удалить"></form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
         <a class="btn btn-success" type="button"
-           href="{{route('brands.create')}}">Добавить категорию</a>
+           href="{{route('brands.create')}}">Добавить бренд</a>
     </div>
 @endsection

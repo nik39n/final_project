@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Admin;
-
-
+use App\Http\Controllers\BasketvController;
 
 
 Route::get('/', 'App\Http\Controllers\IndexController')->name('index');
 
 
-
+Route::get('search','App\Http\Controllers\SearchController')->name('search.index');
 
 Route::group(['prefix' => 'basket'], function () {
     Route::post('add/{id}', 'App\Http\Controllers\BasketvController@basketAdd')->name('basket-add');
@@ -21,7 +20,6 @@ Route::group(['prefix' => 'basket'], function () {
         Route::get('place', 'App\Http\Controllers\BasketvController@basketPlace')->name('basket-place');
         Route::post('remove/{id}', 'App\Http\Controllers\BasketvController@basketRemove')->name('basket-remove');
         Route::post('clear/{id}', 'App\Http\Controllers\BasketvController@basketClear')->name('basket-clear');
-        // Route::post('clear', 'App\Http\Controllers\BasketvController@allbasketClear')->name('allbasketClear');
         Route::post('place', 'App\Http\Controllers\BasketvController@basketConfirm')->name('basket-confirm');
     });
 });
@@ -79,3 +77,5 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get("/logout", 'App\Http\Controllers\Auth\LoginController@logout')->name('get-logout');
+
+

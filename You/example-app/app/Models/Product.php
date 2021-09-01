@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Product extends Model {
+    use SoftDeletes;
+
     use HasFactory;
 
     /**
@@ -16,7 +20,7 @@ class Product extends Model {
         return Category::find($this->category_id);
     }
 
-    protected $fillable = ['id','category_id', 'brand_id','name', 'content', 'slug', 'image', 'price', 'hit', 'new', 'recommend','created_at','updated_at'];
+    protected $fillable = ['id','category_id', 'brand_id','name', 'content', 'slug', 'image', 'price', 'hit', 'new', 'recommend','created_at','updated_at','count'];
     /**
      * Возвращает бренд выбранного товара
      */
@@ -38,6 +42,11 @@ class Product extends Model {
         }
         return $this->price;
     }
+
+    public function isAvailable(){
+        return !$this->trashed() && $this->count>0;
+    }
+
     public function setNewAttribute($value){
         $this->attributes['new'] = $value === 'on' ? 1:0;
     }

@@ -573,6 +573,10 @@
 	 .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
 		 padding: 30px 20px;
 	}
+	.popular-products-slides .owl-carousel{
+		flex-wrap: wrap;
+
+	}
 }
  .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .product-remove {
 	 position: absolute;

@@ -26,6 +26,15 @@
                                 </div>
                             </div>
                             <br>
+                            <br>
+                            @guest
+                                <div class="form-group">
+                                    <label for="email" class="control-label col-lg-offset-3 col-lg-4">E-mail:</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" name="email" id="email" class="form-control">
+                                    </div>
+                                </div>
+                            @endguest
                             <input type="hidden" name="_token" value="">
                             <br>
                             @csrf

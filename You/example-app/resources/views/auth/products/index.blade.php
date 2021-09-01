@@ -5,53 +5,60 @@
 @section('content')
     <div class="col-md-12">
         <h1>Товары</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>
-                    ID
-                </th>
-
-                <th>
-                    Название
-                </th>
-                <th>
-                    Категория
-                </th>
-                <th>
-                    Цена
-                </th>
-                <th>
-                    Действия
-                </th>
-            </tr>
-            @foreach($products as $product)
+        <div class="table-responsive-sm">
+            <table class="table">
+                <tbody>
                 <tr>
-                    <td>{{ $product->id}}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>@isset($product->getCategory()->name)
-                        {{$product->getCategory()->name}}
-                    @else
-                        Нет категории
-                    @endisset
-                    </td>
-                    <td>{{ $product->price }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <form action="{{ route('products.destroy', $product) }}" method="POST">
-                                <a class="btn btn-success" type="button"
-                                   href="{{ route('products.show', $product) }}">Открыть</a>
-                                <a class="btn btn-warning" type="button"
-                                   href="{{ route('products.edit', $product) }}">Редактировать</a>
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Удалить"></form>
-                        </div>
-                    </td>
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Категория
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Действия
+                    </th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->id}}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>@isset($product->getCategory()->name)
+                            {{$product->getCategory()->name}}
+                        @else
+                            Нет категории
+                        @endisset
+                        </td>
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->count }}</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                    <a class="btn btn-success" type="button"
+                                    href="{{ route('products.show', $product) }}">Открыть</a>
+                                    <a class="btn btn-warning" type="button"
+                                    href="{{ route('products.edit', $product) }}">Редактировать</a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger" type="submit" value="Удалить"></form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
         {{$products->links("pagination::bootstrap-4")}}
         <a class="btn btn-success" type="button" href="{{ route('products.create') }}">Добавить товар</a>
     </div>

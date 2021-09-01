@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- ##### Right Side Cart Area ##### -->
-    <div class="cart-bg-overlay"></div>
+    <div class="col-sm-12">
+        <div class="cart-bg-overlay"></div>
 
     <div class="right-side-cart-area">
 
@@ -21,7 +22,7 @@
                         <img src="{{ asset('img/product-img/product-1.jpg')}}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
                             <p class="size">Size: S</p>
@@ -37,7 +38,7 @@
                         <img src="{{ asset('img/product-img/product-2.jpg')}}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
                             <p class="size">Size: S</p>
@@ -53,7 +54,7 @@
                         <img src="{{ asset('img/product-img/product-3.jpg')}}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
-                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
                             <p class="size">Size: S</p>
@@ -89,8 +90,8 @@
                 <div class="col-12">
                     <div class="hero-content">
                         <h6>asoss</h6>
-                        <h2>New Collection</h2>
-                        <a href="#" class="btn essence-btn">view collection</a>
+                        <h2>Новый Бренд</h2>
+                        <a href="{{route('catalog.brand', 'assos')}}" class="btn essence-btn">Просмотреть</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +105,7 @@
             <div class="row justify-content-center">
                 <!-- Single Catagory -->
                 @foreach ($category as $product => $value)
-                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="col-12 col-sm-10 col-md-4 single-prod">
                         <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url( {{Storage::url($value->image)}});">
                             <div class="catagory-content">
                                 <a href="{{ route('catalog.category', ['slug' => $value->slug]) }}" style="
@@ -114,6 +115,14 @@
                         </div>
                     </div>
                 @endforeach    
+                <style>
+                        @media only screen and (min-width:576px) and (max-width:767px) {
+                        .single-prod {flex-wrap:wrap}
+                        }
+                        @media only screen and (max-width:576px) {
+                        .single-prod {margin-bottom: 30px;}
+                        }
+                </style>
             </div>
         </div>
     </div>
@@ -127,9 +136,8 @@
                     <div class="cta-content bg-img background-overlay" style="background-image: url(img/bg-img/bg-5.jpg);">
                         <div class="h-100 d-flex align-items-center justify-content-end">
                             <div class="cta--text">
-                                <h6>-60%</h6>
-                                <h2>Global Sale</h2>
-                                <a href="#" class="btn essence-btn">Buy Now</a>
+                                <h2>Категории</h2>
+                                <a href="{{route('catalog.index')}}" class="btn essence-btn">Просмотреть</a>
                             </div>
                         </div>
                     </div>
@@ -152,6 +160,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    
                     <div class="popular-products-slides owl-carousel" style="
                                                 align-items: flex-start;
                                                 justify-content: center;">
@@ -160,6 +169,14 @@
                                 @endforeach
                         
                     </div>
+                    <style>
+                        @media only screen and (min-width:576px) and (max-width:767px) {
+                        .popular-products-slides.owl-carousel {flex-wrap:wrap}
+                        }
+                        @media only screen and (max-width:576px) {
+                        .popular-products-slides.owl-carousel {flex-wrap:wrap}
+                        }
+                    </style>
                 </div>
             </div>
         </div>
@@ -176,4 +193,5 @@
         @endforeach
     </div>
     <!-- ##### Brands Area End ##### -->
+    </div>
 @endsection

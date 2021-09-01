@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'price' => 'required|numeric|min:1',
             'brand_id' => 'required',
             'slug' => 'required|min:3|max:255',
-            'image' => 'required',
+            'count' => 'required|numeric|min:0',
         ];
 
     }

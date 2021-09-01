@@ -15,11 +15,16 @@ class BasketvController extends Controller
 {
     public function countB(){
         $orderId = session('orderId');
-        $order = Order::findOrFail($orderId);
-        $count = $order->products->count();
-        return $count;
+        $order = Order::find($orderId);
+        if($orderId==null){
+            $CountBasket = 0;
+        }
+        else{
+            $CountBasket = $order->products->count();
+        }
+        return  $CountBasket;
     }
-    public $countBasket;
+    
 
     public function basket()
     {
@@ -29,8 +34,8 @@ class BasketvController extends Controller
         } else {
             $order = Order::create();
         }
-
-        return view('basket.index', compact('order'));
+        $count=$this->countB();
+        return view('basket.index', compact('order','count'));
     }
     public function basketConfirm(Request $request)
     {
@@ -56,7 +61,8 @@ class BasketvController extends Controller
             return redirect()->route('index');
         }
         $order = Order::find($orderId);
-        return view('basket.checkout', compact('order'));
+        $count=$this->countB();
+        return view('basket.checkout', compact('order','count'));
     }
 
     public function basketAdd($productId)
@@ -133,24 +139,6 @@ class BasketvController extends Controller
         return redirect()->route('basket');
     }
 
-    // public function allbasketClear(){
-    //     $orderId = session('orderId');
-    //     if (is_null($orderId)) {
-    //         return redirect()->route('basket');
-    //     }
-    //     $order = Order::find($orderId);
-    //     $count=$order->products->count($orderId);
-    //     $order->products()->first()->pivot;
-    //     for ($i=0; $i <= $count; $i++) { 
-            
-    //         $order->products()->detach($orderId);
-    //         $order->products()->save($orderId);
-    //     }
-
-    //     session()->flash('warning', 'Удалены товары ');
-
-    //     return redirect()->route('basket');
-    // }
-    
     
 }
+        

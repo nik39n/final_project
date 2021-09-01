@@ -104,7 +104,11 @@ class ProductController extends Controller
         //     $params['image'] = $request->file('image')->store('products');
         // }
         Storage::delete($product->image);
-        $path = $request->file('image')->store('products');
+        if ($request->file('image') == null) {
+            $path = "";
+        }else{
+           $path = $request->file('image')->store('products');  
+        }
         $params = $request->all();
         $params['image'] = $path;
         foreach (['new','hit', 'recommend'] as $fieldName){
