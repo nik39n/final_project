@@ -1,7 +1,8 @@
     <div class="col-12 col-sm-10 col-lg-4">
         <div class="single-product-wrapper">
             <!-- Product Image -->
-            <div class="product-img">
+            <div class="product-img" style="
+                                text-align: center;">
                 <div class="labels">
                     @if($product->isNew())
                             <span class="badge badge-success">Новинка</span>
@@ -13,7 +14,9 @@
                             <span class="badge badge-danger">Хит</span>
                     @endif
                 </div>
-                <img src="{{Storage::url($product->image)}}" alt="">
+                <div class="img-wrapper" style="max-width:fit-content">
+                    <img src="{{Storage::url($product->image)}}" alt=""  >
+                </div>
                 
 
                 <!-- Product Badge -->

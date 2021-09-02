@@ -45,7 +45,7 @@
                                 @error('content')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-							<textarea name="content" id="content">@isset($brand){{ $brand->content }}@endisset</textarea>
+							<textarea name="content" id="content" cols="40" rows="5" >@isset($brand){{ $brand->content }}@endisset</textarea>
                             </div>
                         </div>
                         <br>
@@ -69,7 +69,13 @@
                                 </label>
                             </div>
                         </div>
-                        <button class="btn btn-success">Сохранить</button>
+                        <button class="btn btn-success" style="
+    font-size: 16px;
+    font-weight: 400;
+" style="
+    font-size: 16px;
+    font-weight: 500;
+">Сохранить</button>
                     </div>
                 </form>
     </div>

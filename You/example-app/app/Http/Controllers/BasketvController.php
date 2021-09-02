@@ -65,7 +65,7 @@ class BasketvController extends Controller
         return view('basket.checkout', compact('order','count'));
     }
 
-    public function basketAdd($productId)
+    public function basketAdd($productId,Request $request)
     {
         $orderId = session('orderId');
         if (is_null($orderId)) {
@@ -74,8 +74,14 @@ class BasketvController extends Controller
         } else {
             $order = Order::find($orderId);
         }
+        
 
         if ($order->products->contains($productId)) {
+            if($request['quantity']>1){
+                $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
+                $pivotRow->count=$request['quantity'];
+                $pivotRow->update();
+            }
             $pivotRow = $order->products()->where('product_id', $productId)->first()->pivot;
             $pivotRow->count++;
             $pivotRow->update();

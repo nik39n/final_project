@@ -82,7 +82,7 @@
                         @include('auth.layouts.error', ['fieldName' => 'content'])
 
 
-								<textarea name="content" id="content"  value="@isset($product){{ $product->content }}@endisset">@isset($product){{ $product->content }}@endisset</textarea>
+								<textarea name="content" id="content"  value="@isset($product){{ $product->content }}@endisset" cols="40" rows="5" >@isset($product){{ $product->content }}@endisset</textarea>
                     </div>
                 </div>
                 <div class="input-group row">
@@ -142,7 +142,13 @@
                         </div>
                     </div>
                 @endforeach
-                <button class="btn btn-success">Сохранить</button>
+                <button class="btn btn-success" style="
+    font-size: 16px;
+    font-weight: 400;
+" style="
+    font-size: 16px;
+    font-weight: 500;
+">Сохранить</button>
             </div>
         </form>
     </div>

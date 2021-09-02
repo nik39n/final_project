@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- ##### Right Side Cart Area ##### -->
-    <div class="col-sm-12">
+    <div class="">
         <div class="cart-bg-overlay"></div>
 
     <div class="right-side-cart-area">
@@ -89,9 +89,9 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="hero-content">
-                        <h6>asoss</h6>
+                        <h6>New Balance</h6>
                         <h2>Новый Бренд</h2>
-                        <a href="{{route('catalog.brand', 'assos')}}" class="btn essence-btn">Просмотреть</a>
+                        <a href="{{route('catalog.brand', 'New-Balance')}}" class="btn essence-btn">Просмотреть</a>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,11 @@
     <div class="brands-area d-flex align-items-center justify-content-between">
         <!-- Brand Logo -->
         @foreach($allbrand as $brand)    
-            <div class="single-brands-logo">
+            <div class="single-brands-logo" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+">
                 <img src="{{Storage::url($brand->image)}}" alt="">
             </div>
         @endforeach

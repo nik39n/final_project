@@ -68,7 +68,13 @@
             
            
             <div class="btn-group pull-right">
-                        <a type="button" href="{{route('basket-place')}}"  class="btn btn-success">Оформить заказ</a>
+                        <a type="button" href="{{route('basket-place')}}"  class="btn btn-success" style="
+    font-size: 16px;
+    font-weight: 400;
+" style="
+    font-size: 16px;
+    font-weight: 500;
+">Оформить заказ</a>
             </div>
 
     </div>

@@ -42,7 +42,7 @@
     
     <!-- ##### Header Area Start ##### -->
     <header class="header_area  ">
-        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between" style="padding-right: 20px;">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
@@ -123,79 +123,45 @@
          @yield('content')        
         
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer_area clearfix col-sm-12 ">
+    <footer class="footer_area clearfix col-sm-12 p-0">
         <div class="container">
-            <div class="row">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area d-flex mb-30">
-                        <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="{{route('index')}}"><img src="{{ asset('img/core-img/logo2.png')}}" alt=""></a>
-                        </div>
-                        <!-- Footer Menu -->
-                        <div class="footer_menu">
-                            <ul>
-                                <li><a href="{{route('catalog.index')}}">Shop</a></li>
+            <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between" style=" background-color: #252525;">
+                <!-- Classy Menu -->
+                <nav class="classy-navbar d-flex justify-content-between " id="essenceNav">
+                    <!-- Logo -->
+                    <a class="nav-brand col-sm-6" href="{{route('index')}}"><img src="{{ asset('img/core-img/logo2.png')}}" alt="" style="width: 100;text-align: center;"></a>
+                    <!-- Navbar Toggler -->
+                    
+                    <!-- Menu -->
+                        <!-- close btn -->
+                        
+                        <!-- Nav Start -->
+                            <ul  class="col-sm-6 ul-stylee">
+                                <li><a href="{{route('catalog.allprod')}}" style="color:white;">Магазин</a></li>
+                                <li><a href="{{route('catalog.index')}}" style="color:white;">Категории</a></li>
+                                <li><a href="{{route('catalog.allbrand')}}" style="color: white;">Бренды</a></li>
                             </ul>
+                            <style>
+                                .ul-stylee{
+                                    display:flex;
+                                    align-items:center;
+                                    flex-direction:row;
+                                    justify-content: space-between;
+                                }
+                                @media only screen and (max-width:567px) {
+                                    .ul-stylee{
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        flex-wrap: nowrap;
+                                        flex-direction: column;
+                                    }
+                                }
+                            </style>
                         </div>
-                    </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area mb-30">
-                        <ul class="footer_widget_menu">
-                            <li><a href="#">Payment Options</a></li>
-                            <li><a href="#">Shipping and Delivery</a></li>
-                        </ul>
-                    </div>
-                </div>
+                        <!-- Nav End -->
+                </nav>
             </div>
-
-            <div class="row align-items-end">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area">
-                        <div class="footer_heading mb-30">
-                            <h6>Subscribe</h6>
-                        </div>
-                        <div class="subscribtion_form">
-                            <form action="#" method="post">
-                                <input type="email" name="mail" class="mail" placeholder="Your email here">
-                                <button type="submit" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area">
-                        <div class="footer_social_area">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                            <div class=""><i class="fa fa-youtube-play" aria-hidden="true"></i></div>
-                            <div class=""><i class="fa fa-youtube-play" aria-hidden="true"></i></div>
-                            <div class=""><i class="fa fa-youtube-play" aria-hidden="true"></i></div>
-                            <div class=""><i class="fa fa-youtube-play" aria-hidden="true"></i></div>
-                            <div class=""><i class="fa fa-youtube-play" aria-hidden="true"></i></div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <p>
-
-                    </p>
-                </div>
-            </div>
-
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->

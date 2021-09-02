@@ -45,13 +45,13 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <form action="{{ route('products.destroy', $product) }}" method="POST">
-                                    <a class="btn btn-success" type="button"
+                                    <a class="btn btn-success" style="font-size: 16px;font-weight: 400;" type="button"
                                     href="{{ route('products.show', $product) }}">Открыть</a>
-                                    <a class="btn btn-warning" type="button"
+                                    <a class="btn btn-warning" style="font-size: 16px;font-weight: 400;" type="button"
                                     href="{{ route('products.edit', $product) }}">Редактировать</a>
                                     @csrf
                                     @method('DELETE')
-                                    <input class="btn btn-danger" type="submit" value="Удалить"></form>
+                                    <input class="btn btn-danger" style="font-size: 16px;  font-weight: 400;" type="submit" value="Удалить"></form>
                             </div>
                         </td>
                     </tr>

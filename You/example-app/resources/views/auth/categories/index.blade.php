@@ -28,11 +28,11 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                                    <a class="btn btn-success" type="button" href="{{ route('categories.show', $category) }}">Открыть</a>
-                                    <a class="btn btn-warning" type="button" href="{{ route('categories.edit', $category) }}">Редактировать</a>
+                                    <a class="btn btn-success" style="font-size: 16px;font-weight: 400;" type="button" href="{{ route('categories.show', $category) }}">Открыть</a>
+                                    <a class="btn btn-warning" style="font-size: 16px;font-weight: 400;" type="button" href="{{ route('categories.edit', $category) }}">Редактировать</a>
                                     @csrf
                                     @method('DELETE')
-                                    <input class="btn btn-danger" type="submit" value="Удалить"></form>
+                                    <input class="btn btn-danger" style="font-size: 16px; font-weight: 400;" type="submit" value="Удалить"></form>
                             </div>
                         </td>
                     </tr>

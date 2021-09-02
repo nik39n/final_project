@@ -22,12 +22,12 @@
                             <tr>
                                 <td>
                                 <a href="{{route('catalog.product', ['slug' => $product->slug])}}">
-                                        <img height="56px"
+                                        <img height="56px" width="56px"
                                              src="{{ Storage::url($product->image) }}">
                                         {{ $product->name }}
                                     </a>
                                 </td>
-                                <td><span class="badge">{{$order->count()}}</span></td>
+                                    <td><span class="badge">{{$product->pivot->count}}</span></td>
                                 <td>{{ $product->price }} грн</td>
                                 <td>{{ $product->getPriceForCount()}} грн</td>
                             </tr>

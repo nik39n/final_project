@@ -36,9 +36,9 @@
                     <td>
                         <div class="btn-group" role="group">
                             @admin
-                                <a class="btn btn-success" type="button" href="{{route('orders.show', $order)}}">Открыть</a>
+                                <a class="btn btn-success" style="font-size: 16px;    font-weight: 400;" type="button" href="{{route('orders.show', $order)}}">Открыть</a>
                             @else
-                                <a class="btn btn-success" type="button" href="{{route('person.orders.show', $order)}}">Открыть</a>
+                                <a class="btn btn-success"  style="font-size: 16px;    font-weight: 400;" type="button" href="{{route('person.orders.show', $order)}}">Открыть</a>
                             @endadmin
                             <!-- <a class="btn btn-success" type="button" href="{{route('orders.show', $order)}}">Открыть</a> -->
                         </div>

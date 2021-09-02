@@ -18,21 +18,24 @@
                             <!-- Форма для добавления товара в корзину -->
                             <form action="{{ route('basket-add', $product )}}" method="post" class="form-inline">
                                 @csrf
-                                <label for="input-quantity">Количество</label>
-                                <input type="text" name="quantity" id="input-quantity" value="1" class="form-control mx-2 w-25">
                                 @if($product->isAvailable())
-                                    <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                                    <button type="submit" class="btn btn-success" style="
+    font-size: 16px;
+    font-weight: 400;
+" style="
+    font-size: 16px;
+    font-weight: 500;
+">Добавить в корзину</button>
                                 @else 
                                     Не доступен
                                 @endif
                             </form>
+                            <div class="col-12">
+                                <p class="mt-4 mb-0">{{ $product->content }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="mt-4 mb-0">{{ $product->content }}</p>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="card-footer">
                     <div class="row">
