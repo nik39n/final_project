@@ -63,6 +63,8 @@
                             <li><a href="{{route('catalog.allprod')}}">Магазин</a></li>
                             <li><a href="{{route('catalog.index')}}">Категории</a></li>
                             <li><a href="{{route('catalog.allbrand')}}">Бренды</a></li>
+                            <li><a href="{{route('reset_db')}}">Сброс</a></li>
+
                         </ul>
                     </div>
                     <!-- Nav End -->
