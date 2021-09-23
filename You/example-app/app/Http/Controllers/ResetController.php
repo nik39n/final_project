@@ -19,6 +19,7 @@ class ResetController extends Controller
                 Storage::put($file, Storage::disk('reset')->get($file));
             }
         }
+        return redirect()->route('index');
 
         
 
