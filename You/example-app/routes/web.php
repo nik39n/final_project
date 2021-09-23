@@ -48,7 +48,7 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::get('reset', "ResetController@reset")->name('reset_db');
+Route::get('reset', "App\Http\Controllers\ResetController@reset")->name('reset_db');
 
 Route::middleware(['auth'])->group(function () {
     Route::group([
