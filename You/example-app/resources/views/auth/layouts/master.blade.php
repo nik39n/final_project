@@ -82,7 +82,10 @@
                                             aria-haspopup="true" aria-expanded="false" v-pre>
                                                     Аккаунт 
                                             </a>
+                                            <a href="{{route('categories.index')}}" class="nav-link">Категории</a>
                                             <a href="{{route('products.index')}}"  class="nav-link">Товары</a>
+                                            <a href="{{route('brands.index')}}"  class="nav-link">Бренды</a>
+                                            <a href="{{route('home')}}"class="nav-link">Заказы</a>
 
                                         @endadmin
                                         
