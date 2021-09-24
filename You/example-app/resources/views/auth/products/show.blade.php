@@ -3,10 +3,10 @@
 @section('title', 'Продукт ' . $product->name)
 
 @section('content')
-    <div class="col-md-12">
-        <h1>{{ $product->name }}</h1>
-        <table class="table">
-            <tbody>
+<div class="col-md-12">
+    <h1>{{ $product->name }}</h1>
+    <table class="table">
+        <tbody>
             <tr>
                 <th>
                     Поле
@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td>Картинка</td>
-                <td><img src="{{ Storage::url($product->image) }}" height="240px"></td>
+                <td><img src="{{ Storage::url('/storage/app/$product->image') }}" height="240px"></td>
             </tr>
             <tr>
                 <td>Цена</td>
@@ -59,17 +59,17 @@
                 <td>Лейблы</td>
                 <td>
                     @if($product->isNew())
-                            <span class="badge badge-success">Новинка</span>
+                    <span class="badge badge-success">Новинка</span>
                     @endif
                     @if($product->isRecommend())
-                            <span class="badge badge-warning">Рекомендуемое</span>
+                    <span class="badge badge-warning">Рекомендуемое</span>
                     @endif
                     @if($product->isHit())
-                            <span class="badge badge-danger">Хит</span>
+                    <span class="badge badge-danger">Хит</span>
                     @endif
                 </td>
             </tr>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 @endsection
