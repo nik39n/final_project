@@ -26,6 +26,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::where('status',1)->paginate(10);
+        echo "1234555";
         return view('auth.orders.index', compact('orders'));
     }
     public function show(Order $order)
