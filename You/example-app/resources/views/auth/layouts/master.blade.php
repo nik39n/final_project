@@ -63,6 +63,8 @@
                                     <li class="nav-item">
                                         <a class="nav-link active" href="{{ route('register') }}">Зарегистрироваться</a>
                                     </li>
+                                    <li><a href="{{route('products.index')}}"  class="nav-link">Товары</a>
+
                             @endguest
 
                             @auth
