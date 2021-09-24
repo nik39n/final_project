@@ -48,10 +48,12 @@
                     </div>
                     <div class="classynav">
                         <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0" style="width: 100%;">
+                            <li><a href="{{route('products.index')}}"  class="nav-link">Товары</a>
+
                             @admin
                                 <li><a href="{{route('categories.index')}}" class="nav-link">Категории</a></li>
-                                <li><a href="{{route('products.index')}}"  class="nav-link">Товары</a>
-                                <li><a href="{{route('brands.index')}}"  class="nav-link">Бренды</a>
+                                <li><a href="{{route('products.index')}}"  class="nav-link">Товары</a></li>
+                                <li><a href="{{route('brands.index')}}"  class="nav-link">Бренды</a></li>
                                 <li><a href="{{route('home')}}"class="nav-link">Заказы</a></li>
                             @endadmin
                         
@@ -63,8 +65,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link active" href="{{ route('register') }}">Зарегистрироваться</a>
                                     </li>
-                                    <li><a href="{{route('products.index')}}"  class="nav-link">Товары</a>
-
+                                    
                             @endguest
 
                             @auth
@@ -81,6 +82,8 @@
                                             aria-haspopup="true" aria-expanded="false" v-pre>
                                                     Аккаунт 
                                             </a>
+                                            <a href="{{route('products.index')}}"  class="nav-link">Товары</a>
+
                                         @endadmin
                                         
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -96,7 +99,7 @@
                                             </form>
                                         </div>
                                     </li>
-                        @endauth
+                            @endauth
                         </ul>
                     </div>
                 </div>
