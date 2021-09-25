@@ -51,6 +51,16 @@ Auth::routes([
 Route::get('reset', "App\Http\Controllers\ResetController@reset")->name('reset_db');
 
 Route::middleware(['auth'])->group(function () {
+
+    
+        Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+            Route::group(['middleware' => 'is_admin'], function () {
+                Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
+                Route::get('/orders{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+        });
+
+
+
     Route::group([
         'prefix' => 'person',
         'as' => 'person.',
@@ -61,11 +71,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
-        Route::group(['middleware' => 'is_admin'], function () {
-            Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('home');
-            Route::get('/orders{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
-        });
+    
 
         Route::resource('categories', 'App\Http\Controllers\Admin\CategoryController');
         Route::resource('products', 'App\Http\Controllers\Admin\ProductController');
